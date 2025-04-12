@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://2eoq76ffybbi"]
+
+[ext_resource type="Script" uid="uid://danpdqp8m7b14" path="res://scripts/clock/clock.gd" id="1_rrx2h"]
+[ext_resource type="Texture2D" uid="uid://cpxy57k5q0pwn" path="res://assets/clock/clock_face.png" id="2_re8fd"]
+[ext_resource type="Texture2D" uid="uid://woc7qxw6cdfy" path="res://assets/clock/clock_face_fill.png" id="4_4ldhw"]
+[ext_resource type="Texture2D" uid="uid://60jrr6k4r7mq" path="res://assets/clock/hour_hand.png" id="4_ruk8s"]
+[ext_resource type="Texture2D" uid="uid://f6xknek1j6ir" path="res://assets/clock/minute_hand.png" id="5_x47xc"]
+
+[node name="clock" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_rrx2h")
+hand_rotation_speed = 8.0
+
+[node name="clock_face" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_re8fd")
+
+[node name="texture_progress_bar" type="TextureProgressBar" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0.72549)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -250.0
+offset_right = 250.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.0
+value = 1.0
+fill_mode = 5
+radial_initial_angle = 90.0
+radial_fill_degrees = 60.0
+texture_progress = ExtResource("4_4ldhw")
+
+[node name="hour_hand" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -14.0
+offset_right = 14.0
+offset_bottom = 300.0
+grow_horizontal = 2
+rotation = 6.80678
+scale = Vector2(0.405, -0.405)
+pivot_offset = Vector2(14, 0)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("4_ruk8s")
+metadata/_edit_use_anchors_ = true
+
+[node name="minute_hand" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -14.0
+offset_right = 14.0
+offset_bottom = 400.0
+scale = Vector2(0.405, -0.405)
+pivot_offset = Vector2(14, 0)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_x47xc")
+metadata/_edit_use_anchors_ = true
+
+[node name="panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(512, 64)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = 256.0
+offset_right = 256.0
+offset_bottom = 421.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="label" type="Label" parent="panel"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Time Until Recess:
+120 Minutes"
+horizontal_alignment = 1
+vertical_alignment = 1

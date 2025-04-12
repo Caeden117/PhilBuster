@@ -1,0 +1,257 @@
+[gd_scene load_steps=15 format=3 uid="uid://m0dkott85qmk"]
+
+[ext_resource type="Script" uid="uid://d23kpmtei5n5y" path="res://scripts/shop/flow_coordinator.gd" id="1_joqlw"]
+[ext_resource type="Script" uid="uid://dtxfpwtyg1a8t" path="res://assets/shop/shop.gd" id="1_u7rti"]
+[ext_resource type="PackedScene" uid="uid://boskellw4qds0" path="res://assets/shop/menu_view.tscn" id="1_v8g57"]
+[ext_resource type="Theme" uid="uid://qm7h04x08t3m" path="res://assets/theme.tres" id="2_msibo"]
+[ext_resource type="Script" uid="uid://b6ieeq5ts4te2" path="res://scripts/shop/shop_view.gd" id="4_k4ejo"]
+[ext_resource type="PackedScene" uid="uid://dqess31lwqmci" path="res://assets/phil/phil_shop.tscn" id="5_nyl32"]
+[ext_resource type="Script" uid="uid://dywu1p8i2ubxi" path="res://scripts/shop/deck_view.gd" id="5_u7rti"]
+[ext_resource type="PackedScene" uid="uid://jfp01npsno1" path="res://assets/game_button/game_button.tscn" id="6_01ogr"]
+[ext_resource type="AudioStream" uid="uid://1rjq1wcarnmq" path="res://assets/sfx/clips/shop_itempurchase.wav" id="7_nyl32"]
+[ext_resource type="PackedScene" uid="uid://d4n0r7gnn28om" path="res://assets/card/card_instance.tscn" id="7_vox5x"]
+[ext_resource type="AudioStream" uid="uid://oxgpw20415fr" path="res://assets/sfx/clips/shop_notenoughmoney_maybe.wav" id="8_01ogr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_joqlw"]
+font_size = 64
+font_color = Color(0.372549, 0.282353, 0.145098, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_kuxa5"]
+font_size = 72
+font_color = Color(0.59, 0.59, 0.59, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ys3jj"]
+font_size = 61
+
+[node name="shop" type="CanvasLayer"]
+script = ExtResource("1_u7rti")
+
+[node name="flow_coordinator" type="Control" parent="." node_paths=PackedStringArray("root_view", "back_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = ExtResource("2_msibo")
+script = ExtResource("1_joqlw")
+root_view = NodePath("menu_view")
+back_button = NodePath("heading_banner/game_button")
+metadata/_custom_type_script = "uid://d23kpmtei5n5y"
+
+[node name="temp_background" type="ColorRect" parent="flow_coordinator"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.99, 0.94842, 0.8514, 1)
+
+[node name="menu_view" parent="flow_coordinator" instance=ExtResource("1_v8g57")]
+visible = false
+modulate = Color(1, 1, 1, 0.984314)
+layout_mode = 1
+metadata/_custom_type_script = "uid://cbdh5ey656ac2"
+
+[node name="phil_shop" parent="flow_coordinator/menu_view" instance=ExtResource("5_nyl32")]
+layout_mode = 1
+
+[node name="game_button" parent="flow_coordinator/menu_view" instance=ExtResource("6_01ogr")]
+layout_mode = 1
+offset_left = 200.0
+offset_top = 382.0
+offset_right = -1120.0
+offset_bottom = -626.0
+text = "Shop"
+
+[node name="game_button2" parent="flow_coordinator/menu_view" instance=ExtResource("6_01ogr")]
+layout_mode = 1
+offset_left = 200.0
+offset_top = 511.0
+offset_right = -1120.0
+offset_bottom = -497.0
+text = "Deck Management"
+
+[node name="game_button3" parent="flow_coordinator/menu_view" instance=ExtResource("6_01ogr")]
+layout_mode = 1
+offset_left = 200.0
+offset_top = 782.0
+offset_right = -1120.0
+offset_bottom = -226.0
+text = "Next Session >>>"
+
+[node name="shop_view" parent="flow_coordinator" instance=ExtResource("1_v8g57")]
+layout_mode = 1
+script = ExtResource("4_k4ejo")
+metadata/_custom_type_script = "uid://cbdh5ey656ac2"
+
+[node name="label" type="Label" parent="flow_coordinator/shop_view"]
+layout_mode = 1
+offset_left = 297.0
+offset_top = 166.0
+offset_right = 582.0
+offset_bottom = 254.0
+rotation = -0.261799
+text = "The Shop"
+label_settings = SubResource("LabelSettings_joqlw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="reroll" parent="flow_coordinator/shop_view" instance=ExtResource("6_01ogr")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -240.0
+offset_right = 300.0
+offset_bottom = -168.0
+text = "Reroll: $%d"
+
+[node name="shop_container" type="HBoxContainer" parent="flow_coordinator/shop_view"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -117.98
+offset_bottom = 106.02
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="purchase_container" type="ColorRect" parent="flow_coordinator/shop_view"]
+modulate = Color(0, 0, 0, 0.25098)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 26.0
+offset_top = -238.0
+offset_right = -26.0
+offset_bottom = -21.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="label" type="Label" parent="flow_coordinator/shop_view/purchase_container"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "PURCHASE"
+label_settings = SubResource("LabelSettings_kuxa5")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shop_purchase" type="AudioStreamPlayer" parent="flow_coordinator/shop_view"]
+stream = ExtResource("7_nyl32")
+bus = &"Sound"
+
+[node name="shop_fail" type="AudioStreamPlayer" parent="flow_coordinator/shop_view"]
+stream = ExtResource("8_01ogr")
+bus = &"Sound"
+
+[node name="deck_view" parent="flow_coordinator" instance=ExtResource("1_v8g57")]
+visible = false
+layout_mode = 1
+script = ExtResource("5_u7rti")
+metadata/_custom_type_script = "uid://cbdh5ey656ac2"
+
+[node name="label" type="Label" parent="flow_coordinator/deck_view"]
+layout_mode = 1
+offset_left = 252.0
+offset_top = 184.0
+offset_right = 667.0
+offset_bottom = 363.0
+rotation = -0.261799
+text = "Manage Deck
+"
+label_settings = SubResource("LabelSettings_joqlw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="card_instance" parent="flow_coordinator/deck_view" instance=ExtResource("7_vox5x")]
+visible = false
+layout_mode = 0
+offset_left = 883.0
+offset_top = 45.0
+offset_right = 1083.0
+offset_bottom = 325.0
+
+[node name="progress_bar" type="ProgressBar" parent="flow_coordinator/deck_view"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 353.0
+offset_right = 1891.0
+offset_bottom = 406.0
+step = 1.0
+show_percentage = false
+
+[node name="label" type="Label" parent="flow_coordinator/deck_view/progress_bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "30 / 30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="word_types" type="HBoxContainer" parent="flow_coordinator/deck_view"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -664.0
+offset_right = -27.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="heading_banner" type="ColorRect" parent="flow_coordinator"]
+layout_mode = 0
+offset_left = -683.0
+offset_top = 128.0
+offset_right = 1113.0
+offset_bottom = 426.0
+rotation = -0.261799
+color = Color(0.372549, 0.282353, 0.145098, 1)
+
+[node name="label" type="Label" parent="flow_coordinator/heading_banner"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -165.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "BREAK TIME"
+label_settings = SubResource("LabelSettings_ys3jj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="game_button" parent="flow_coordinator/heading_banner" instance=ExtResource("6_01ogr")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+offset_left = -250.858
+offset_top = 6.8812
+offset_right = -170.858
+offset_bottom = 86.8812
+grow_vertical = 0
+text = "BACK"
+
+[connection signal="pressed" from="flow_coordinator/menu_view/game_button" to="flow_coordinator" method="push_view_by_name" binds= ["shop_view"]]
+[connection signal="pressed" from="flow_coordinator/menu_view/game_button2" to="flow_coordinator" method="push_view_by_name" binds= ["deck_view"]]
+[connection signal="pressed" from="flow_coordinator/menu_view/game_button3" to="." method="exit_shop"]
+[connection signal="pressed" from="flow_coordinator/shop_view/reroll" to="flow_coordinator/shop_view" method="reroll_shop"]

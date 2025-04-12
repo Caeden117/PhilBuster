@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Topic" load_steps=3 format=3 uid="uid://cnuwsfwmdismw"]
+
+[ext_resource type="Script" uid="uid://ds8jogremg381" path="res://scripts/card/card_info.gd" id="1_e1iep"]
+[ext_resource type="Script" uid="uid://c7giyb4t438lj" path="res://scripts/topic/topic.gd" id="14_m3hw0"]
+
+[resource]
+script = ExtResource("14_m3hw0")
+sentences = PackedStringArray("Have you seen a koala {v}? It just makes you want to {v}!", "Koalas got mean claws. Like {n}-mean, cutting-through-{n} kinda mean, ya know?", "Koala. {n}. {v}. And that\'s how I got chlamydia.", "LOOK AT IT!!!! IT\'S SO CUTE!!!! KAWAII DESU!!!", "Koala {n}. Koala {n}. Koala do {v}. Koala do {v}.", "Contrary to popular belief, koalas are in fact NOT bears! They\'re classified as {n} for their obvious {n}.", "Ah~ ye, this here tree mate, there {n} be, mmm... koala, please {v} me.", "Big ears, big {n}.", "We must provide an offering to our marsupial overlords. A {n} will do. ", "The wombat may {v}, but the koala can {v}.")
+words = Dictionary[ExtResource("1_e1iep"), bool]({})
+metadata/_custom_type_script = "uid://c7giyb4t438lj"
